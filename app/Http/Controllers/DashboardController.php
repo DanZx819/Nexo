@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,6 +12,10 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('dashboard.index');
+        $produtos = Produto::all();
+        return view('dashboard.index', compact('produtos'));
+
+        
+
     }
 }
