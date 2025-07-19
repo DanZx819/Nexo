@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreateRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
+
+
+
 
 class ProductController extends Controller
 {
@@ -58,15 +63,21 @@ class ProductController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+        
+        return view('admin.edit_product', compact('produto'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductUpdateRequest $request)
     {
-        //
+        $update = $request->UpdateProduct();
+
+        $produtos = Produto::all();
+
+        return view('admin.menu', compact('produtos'))->with('message', 'Produto editado com sucesso !!!');
+        
     }
 
     /**
