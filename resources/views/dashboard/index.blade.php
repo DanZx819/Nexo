@@ -35,8 +35,9 @@
 
     @foreach ($produtos as $produto)
         <div class="card bg-base-100 w-96 shadow-sm">
+            
             <figure>
-                <img src="{{ $produto->foto }}" alt="{{ $produto->titulo }}" />
+                <img src="{{$produto->foto}}" alt="{{ $produto->titulo }}" />
             </figure>
             <div class="card-body">
                 <h2 class="card-title">{{ $produto->titulo }}</h2>
