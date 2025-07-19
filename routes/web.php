@@ -45,5 +45,9 @@ Route::middleware(IsAdmin::class)->group(function (){
 
     Route::get('/menu', AdminController::class)->name('admin.menu');
 
+    Route::get('edit/{produto}', [ProductController::class, 'edit'])->name('edit.product');
+
+    Route::post('edit/update', [ProductController::class, 'update'])->name('update.product');
+
     Route::delete('/producos/delete/{produto}', [ProductController::class, 'destroy'])->name('product.delete');
 });
