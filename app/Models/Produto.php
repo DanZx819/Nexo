@@ -10,6 +10,7 @@ class Produto extends Model
         'titulo',
         'descricao',
         'preco',
-        'foto'
+        'foto',
+        'quantidade'
     ];
 }
