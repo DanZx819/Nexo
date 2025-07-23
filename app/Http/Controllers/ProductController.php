@@ -42,7 +42,8 @@ class ProductController extends Controller
             'titulo' => $request->titulo,
             'descricao' => $request->descricao,
             'preco' => $request->preco,
-            'foto' => $foto_path
+            'foto' => $foto_path,
+            'quantidade' => $request->quantidade
         ]);
 
 
@@ -74,9 +75,11 @@ class ProductController extends Controller
     {
         $update = $request->UpdateProduct();
 
+
+        
         $produtos = Produto::all();
 
-        return view('admin.menu', compact('produtos'))->with('message', 'Produto editado com sucesso !!!');
+        return to_route('admin.menu', compact('produtos'))->with('message', 'Produto editado com sucesso !!!');
         
     }
 
