@@ -12,8 +12,19 @@ class AdminController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $produtos = Produto::all();
+        $pesquisa = request('search');
 
-        return view('admin.menu', compact('produtos'));
+        if ($pesquisa) {
+            $produtos = Produto::where([
+                ['titulo', 'like', '%'.$pesquisa.'%']
+            ])->get();
+        }else{
+            $produtos = Produto::all();
+        }
+        
+
+        return view('admin.menu', compact('produtos', 'pesquisa'));
     }
+
+    
 }
