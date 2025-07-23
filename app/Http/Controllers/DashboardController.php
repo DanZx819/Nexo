@@ -12,8 +12,16 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $produtos = Produto::all();
-        return view('dashboard.index', compact('produtos'));
+        $pesquisa = request('pesquisa');
+
+        if ($pesquisa) {
+            $produtos = Produto::where([
+                ['titulo', 'like', '%'.$pesquisa.'%']
+            ])->get();
+        }else{
+            $produtos = Produto::all();
+        }
+        return view('dashboard.index', compact('produtos', 'pesquisa'));
 
         
 
