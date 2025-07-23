@@ -26,6 +26,7 @@ class ProductCreateRequest extends FormRequest
             'descricao' => ['required', 'string'],
             'preco' => ['required', 'numeric', 'min:0', 'regex:/^\d+(\.\d{1,2})?$/'],
             'foto' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'quantidade' => ['required', 'numeric']
         ];
     }
 
