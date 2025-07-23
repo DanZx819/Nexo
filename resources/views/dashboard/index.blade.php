@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Nexo - Premium E-Commerce')
+@section('title', 'Premium E-Commerce')
 
 @section('content')
     @if ($message = session('message'))
