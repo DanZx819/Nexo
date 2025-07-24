@@ -3,56 +3,63 @@
 @section('title', 'Premium E-Commerce')
 
 @section('content')
-    @if ($message = session('message'))
-        <div id="success-message"
-            class="fixed top-4 left-4 right-4 z-50 transform -translate-x-full opacity-0 transition-all duration-500 ease-out">
-            <div class="bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg max-w-md mx-auto flex items-center space-x-3">
-                <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+   @if ($message = session('message'))
+    <div id="success-message"
+        class="fixed top-4 left-4 z-50 transform scale-0 opacity-0 transition-all duration-300 ease-out">
+        <div class="bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg max-w-sm flex items-center space-x-3">
+            <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="font-medium">{{ $message }}</span>
+            <button onclick="hideMessage()" class="ml-auto text-white hover:text-gray-200 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
                 </svg>
-                <span class="font-medium">{{ $message }}</span>
-                <button onclick="hideMessage()" class="ml-auto text-white hover:text-gray-200 transition-colors">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg>
-                </button>
-            </div>
+            </button>
         </div>
+    </div>
 
-        <script>
-            // Show message with animation
-            document.addEventListener('DOMContentLoaded', function() {
-                const message = document.getElementById('success-message');
-                if (message) {
-                    // Slide in from left
+    <script>
+        // Show message with explosion animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const message = document.getElementById('success-message');
+            if (message) {
+                // Explosion effect - scale from 0 to 1.1 then back to 1
+                setTimeout(() => {
+                    message.classList.remove('scale-0', 'opacity-0');
+                    message.classList.add('scale-110', 'opacity-100');
+                    
+                    // Scale back to normal size
                     setTimeout(() => {
-                        message.classList.remove('-translate-x-full', 'opacity-0');
-                        message.classList.add('translate-x-0', 'opacity-100');
-                    }, 100);
+                        message.classList.remove('scale-110');
+                        message.classList.add('scale-100');
+                    }, 150);
+                }, 100);
 
-                    // Auto hide after 3 seconds
-                    setTimeout(() => {
-                        hideMessage();
-                    }, 3000);
-                }
-            });
-
-            function hideMessage() {
-                const message = document.getElementById('success-message');
-                if (message) {
-                    message.classList.remove('translate-x-0', 'opacity-100');
-                    message.classList.add('translate-x-full', 'opacity-0');
-
-                    // Remove from DOM after animation
-                    setTimeout(() => {
-                        message.remove();
-                    }, 500);
-                }
+                // Auto hide after 4 seconds
+                setTimeout(() => {
+                    hideMessage();
+                }, 4000);
             }
-        </script>
-    @endif
+        });
+
+        function hideMessage() {
+            const message = document.getElementById('success-message');
+            if (message) {
+                // Scale down and fade out
+                message.classList.remove('scale-100', 'opacity-100');
+                message.classList.add('scale-0', 'opacity-0');
+
+                // Remove from DOM after animation
+                setTimeout(() => {
+                    message.remove();
+                }, 300);
+            }
+        }
+    </script>
+@endif
 
     <!-- Header Section -->
     <div class="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white">
@@ -72,6 +79,8 @@
                         <a href="#" class="text-white hover:text-blue-200 transition-colors">Categories</a>
                         <a href="#" class="text-white hover:text-blue-200 transition-colors">About</a>
                         <a href="#" class="text-white hover:text-blue-200 transition-colors">Contact</a>
+                        <a href="{{ route('cart.index') }}"
+                            class="text-white hover:text-blue-200 transition-colors">Cart</a>
                     </div>
                 </div>
 
@@ -256,14 +265,18 @@
 
                             <!-- Action Buttons -->
                             <div class="space-y-2">
-                                <a href="{{ route('produtos.show', $produto) }}"
-                                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                                    </svg>
-                                    <span>Add to Cart</span>
-                                </a>
+                                <form action="{{ route('cart.add') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $produto->id }}">
+                                    <button type="submit"
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                        </svg>
+                                        <span>Add to Cart</span>
+                                    </button>
+                                </form>
                                 <a class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-6 rounded-lg transition-colors"
                                     href=" {{ route('produtos.show', $produto) }}">
                                     Quick View
