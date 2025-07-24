@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
@@ -35,6 +36,11 @@ Route::middleware('auth')->group(function (){
     Route::get('/produtos/{produto}', [ProductController::class, 'show'])->name('produtos.show');
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::get('/cart', [CarrinhoController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CarrinhoController::class, 'adicionar'])->name('cart.add');
+    Route::delete('/cart/remover/{id}', [CarrinhoController::class, 'remover'])->name('cart.remover');
+    Route::delete('/cart/limpar', [CarrinhoController::class, 'limpar'])->name('cart.limpar');
     
 });
 
