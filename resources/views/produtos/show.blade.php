@@ -120,87 +120,91 @@
                         </div>
 
                         <!-- Action Buttons -->
-                        <div class="space-y-4">
+                        <div class="space-y-6">
 
-                            <!-- Quantity Selector -->
+                            <!-- Seletor de Quantidade -->
+                            <div class="flex items-center space-x-4">
+                                <label class="text-sm font-medium text-gray-700">Quantity:</label>
+                                <div class="flex items-center border border-gray-300 rounded-lg">
+                                    <button type="button" onclick="decreaseQuantity()"
+                                        class="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M20 12H4" />
+                                        </svg>
+                                    </button>
+                                    <input type="number" id="quantity" min="1" value="1"
+                                        name="product_quantity" class="w-16 px-3 py-2 text-center border-0 focus:ring-0"
+                                        readonly>
+                                    <button type="button" onclick="increaseQuantity()"
+                                        class="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
 
-
-                            <!-- Primary Actions -->
+                            <!-- Botões principais -->
                             <div class="flex flex-col sm:flex-row gap-4">
 
-                                <!-- Buy Now Button -->
-                                <a href="#"
-                                    class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 text-lg">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
-                                        </path>
-                                    </svg>
-                                    <span>Buy Now</span>
-                                </a>
-
-                                <!-- Add to Cart Button -->
-                                <form action="{{ route('cart.add') }}" method="POST" class="flex-1">
+                                <!-- Add to Cart -->
+                                <form action="{{ route('cart.add') }}" method="POST" class="w-full sm:w-1/2">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $produto->id }}">
-                                    <div class="flex items-center space-x-4 mb-6">
-                                        <label class="text-sm font-medium text-gray-700">Quantity:</label>
-                                        <div class="flex items-center border border-gray-300 rounded-lg">
-                                            <button type="button" onclick="decreaseQuantity()"
-                                                class="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M20 12H4"></path>
-                                                </svg>
-                                            </button>
-                                            <input type="number" id="quantity" min="1" value="1"
-                                                name="product_quantity"
-                                                class="w-16 px-3 py-2 text-center border-0 focus:ring-0" readonly>
-                                            <button type="button" onclick="increaseQuantity()"
-                                                class="px-3 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-50">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <input type="hidden" name="product_quantity" id="product_quantity" value="1">
                                     <button type="submit"
-                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 text-lg">
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg flex items-center justify-center space-x-2 text-lg">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h7.5M17 18a2 2 0 11-4 0 2 2 0 014 0zM9 18a2 2 0 11-4 0 2 2 0 014 0z">
-                                            </path>
+                                                d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h7.5M17 18a2 2 0 11-4 0 2 2 0 014 0zM9 18a2 2 0 11-4 0 2 2 0 014 0z" />
                                         </svg>
                                         <span>Add to Cart</span>
                                     </button>
                                 </form>
+
+                                <!-- Buy Now -->
+                                <form action="{{ route('checkout') }}" method="POST" class="w-full sm:w-1/2">
+                                    @csrf
+                                    <input type="hidden" name="titulo" value="{{ $produto->titulo }}">
+                                    <input type="hidden" name="quantidade" value="1">
+                                    <input type="hidden" name="preco" value="{{ $produto->preco }}">
+                                    <button type="submit"
+                                        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-6 rounded-lg flex items-center justify-center space-x-2 text-lg">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                        </svg>
+                                        <span>Buy Now</span>
+                                    </button>
+                                </form>
                             </div>
 
-                            <!-- Secondary Actions -->
-                            <div class="flex justify-center space-x-6 pt-4">
+                            <!-- Ações secundárias -->
+                            <div class="flex justify-center space-x-8 pt-4">
+                                <!-- Wishlist -->
                                 <button
                                     class="flex items-center space-x-2 text-gray-600 hover:text-red-600 transition-colors">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                                        </path>
+                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
                                     <span>Add to Wishlist</span>
                                 </button>
+
+                                <!-- Share -->
                                 <button
                                     class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z">
-                                        </path>
+                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
                                     </svg>
                                     <span>Share Product</span>
                                 </button>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
