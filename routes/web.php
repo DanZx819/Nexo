@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Middleware\IsAdmin;
@@ -29,7 +31,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
@@ -41,10 +43,16 @@ Route::middleware('auth')->group(function (){
     Route::post('/cart/add', [CarrinhoController::class, 'adicionar'])->name('cart.add');
     Route::delete('/cart/remover/{id}', [CarrinhoController::class, 'remover'])->name('cart.remover');
     Route::delete('/cart/limpar', [CarrinhoController::class, 'limpar'])->name('cart.limpar');
-    
+
+
+    Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+
+    Route::get('/checkout/success', [PaymentController::class, 'success'])->name('checkout.success');
+    Route::get('/checkout/failure', [PaymentController::class, 'failure'])->name('checkout.failure');
+    Route::get('/checkout/pending', [PaymentController::class, 'pending'])->name('checkout.pending');
 });
 
-Route::middleware(IsAdmin::class)->group(function (){
+Route::middleware(IsAdmin::class)->group(function () {
     Route::get('/product/create', [ProductController::class, 'create'])->name('create.index');
 
     Route::post('/product/create', [ProductController::class, 'store'])->name('store.product');
