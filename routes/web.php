@@ -45,7 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/cart/limpar', [CarrinhoController::class, 'limpar'])->name('cart.limpar');
 
 
-    Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+    Route::post('/checkout', [PaymentController::class, 'checkout_one'])->name('checkout');
+
+    Route::post('/cart/checkout', [PaymentController::class, 'checkout_cart'])->name('checkout.cart');
 
     Route::get('/checkout/success', [PaymentController::class, 'success'])->name('checkout.success');
     Route::get('/checkout/failure', [PaymentController::class, 'failure'])->name('checkout.failure');
