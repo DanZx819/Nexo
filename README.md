@@ -211,8 +211,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 🔗 **Conecte-se comigo:**  
 [![GitHub](https://img.shields.io/badge/GitHub-@DanZx819-181717?style=flat&logo=github)](https://github.com/DanZx819)  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Daniel_Zanchetta-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/daniel-zanchetta)  
-[![Email](https://img.shields.io/badge/Email-Contato-EA4335?style=flat&logo=gmail)](mailto:daniel.zanchetta@example.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Daniel_Zanchetta-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/daniel-de-oliveira-zanchetta-512a3b311)  
 
 ---
 
