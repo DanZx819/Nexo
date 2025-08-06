@@ -7,55 +7,219 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# 🛒 E-commerce Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+> Um sistema completo de e-commerce desenvolvido com Laravel 12, incluindo painel administrativo, carrinho de compras e integração com Mercado Pago.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Blade](https://img.shields.io/badge/Blade-Templates-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 👋 Sobre o Projeto
 
-## Learning Laravel
+Este é um projeto completo de **e-commerce** desenvolvido por **Daniel de Oliveira Zanchetta** ([@DanZx819](https://github.com/DanZx819)), onde apliquei diversos conceitos fundamentais e avançados do Laravel, demonstrando boas práticas de desenvolvimento web moderno.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+O sistema oferece uma experiência completa tanto para administradores quanto para clientes, com funcionalidades robustas de gerenciamento de produtos, carrinho de compras e processamento de pagamentos.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## ✨ Features Principais
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🔐 Sistema de Autenticação
+- ✅ Registro de usuários
+- ✅ Login/Logout seguro
+- ✅ Controle de acesso por tipo de usuário (Admin/Cliente)
+- ✅ Rotas protegidas por middleware
 
-## Laravel Sponsors
+### 🛍️ Funcionalidades do E-commerce
+- ✅ **Catálogo de Produtos** - Listagem com paginação e filtros
+- ✅ **Carrinho de Compras** - Persistente por usuário autenticado
+- ✅ **Checkout Completo** - Integração com Mercado Pago
+- ✅ **Gerenciamento de Pedidos** - Histórico e status
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### ⚙️ Painel Administrativo
+- ✅ **CRUD de Produtos** - Criação, edição e exclusão
+- ✅ **Upload de Imagens** - Com tratamento e otimização
+- ✅ **Gerenciamento de Usuários**
+- ✅ **Dashboard com Estatísticas**
 
-### Premium Partners
+### 💳 Sistema de Pagamentos
+- ✅ **Checkout Pro** - Redirecionamento para Mercado Pago
+- ✅ **Checkout Transparente** - Pagamento sem sair do site
+- ✅ **Webhooks** - Confirmação automática de pagamentos
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🛠️ Tecnologias Utilizadas
 
-## Contributing
+| Tecnologia | Descrição | Versão |
+|------------|-----------|---------|
+| **Laravel** | Framework PHP | 12.x |
+| **Blade** | Engine de Templates | Nativo |
+| **Eloquent ORM** | Mapeamento Objeto-Relacional | Nativo |
+| **MySQL** | Banco de Dados | 8.0+ |
+| **Shopping Cart** | [darryldecode/cart](https://github.com/darryldecode/laravelshoppingcart) | ^4.0 |
+| **Mercado Pago SDK** | Gateway de Pagamento | Oficial |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🚀 Instalação e Configuração
 
-## Code of Conduct
+### Pré-requisitos
+- PHP 8.2 ou superior
+- Composer
+- MySQL 8.0+
+- Node.js e NPM (para assets)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Passo a passo
 
-## Security Vulnerabilities
+1. **Clone o repositório**
+```bash
+git clone https://github.com/DanZx819/ecommerce-laravel.git
+cd ecommerce-laravel
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. **Instale as dependências**
+```bash
+composer install
+npm install
+```
 
-## License
+3. **Configure o ambiente**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. **Configure o banco de dados no `.env`**
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ecommerce_laravel
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+```
+
+5. **Configure o Mercado Pago no `.env`**
+```env
+MERCADO_PAGO_ACCESS_TOKEN=seu_access_token
+MERCADO_PAGO_PUBLIC_KEY=sua_public_key
+```
+
+6. **Execute as migrações e seeders**
+```bash
+php artisan migrate --seed
+```
+
+7. **Compile os assets**
+```bash
+npm run build
+```
+
+8. **Inicie o servidor**
+```bash
+php artisan serve
+```
+
+## 📁 Estrutura do Projeto
+
+```
+📦 ecommerce-laravel
+├── 📂 app/
+│   ├── 📂 Http/Controllers/
+│   │   ├── AdminController.php
+│   │   ├── CartController.php
+│   │   ├── CheckoutController.php
+│   │   └── ProductController.php
+│   ├── 📂 Models/
+│   │   ├── Product.php
+│   │   ├── Order.php
+│   │   └── User.php
+│   └── 📂 Services/
+│       └── MercadoPagoService.php
+├── 📂 resources/
+│   ├── 📂 views/
+│   │   ├── 📂 admin/
+│   │   ├── 📂 cart/
+│   │   └── 📂 products/
+└── 📂 database/
+    ├── 📂 migrations/
+    └── 📂 seeders/
+```
+
+## 🎯 Funcionalidades Detalhadas
+
+### Para Clientes
+- **Navegação Intuitiva** - Interface limpa e responsiva
+- **Busca Avançada** - Filtros por categoria, preço e disponibilidade
+- **Carrinho Inteligente** - Cálculo automático de frete e impostos
+- **Checkout Rápido** - Processo simplificado em poucos passos
+
+### Para Administradores
+- **Dashboard Completo** - Métricas de vendas e produtos
+- **Gestão de Estoque** - Controle de quantidade e disponibilidade
+- **Relatórios** - Análise de vendas e performance
+- **Configurações** - Personalização do sistema
+
+## 🧠 Conceitos Aplicados
+
+Durante o desenvolvimento, foram aplicados diversos conceitos importantes:
+
+- **Arquitetura MVC** - Separação clara de responsabilidades
+- **Eloquent Relationships** - Relacionamentos entre modelos
+- **Middleware Customizado** - Controle de acesso e validações
+- **Service Layer** - Lógica de negócio isolada
+- **Form Requests** - Validações robustas
+- **Observers** - Eventos e listeners
+- **Storage Management** - Gerenciamento de arquivos
+
+## 🔒 Segurança
+
+- **CSRF Protection** - Proteção contra ataques CSRF
+- **SQL Injection** - Prevenção através do Eloquent ORM
+- **XSS Protection** - Sanitização de dados
+- **Authentication** - Sistema robusto de autenticação
+- **Authorization** - Controle de permissões por usuário
+
+## 📚 Aprendizados
+
+Durante o desenvolvimento deste projeto, consolidei conhecimentos em:
+
+✅ **Laravel Framework** - Domínio completo da estrutura MVC  
+✅ **Eloquent ORM** - Relacionamentos complexos e otimização de queries  
+✅ **Blade Templates** - Criação de interfaces dinâmicas e reutilizáveis  
+✅ **Middleware** - Implementação de filtros e validações  
+✅ **APIs Externas** - Integração com gateways de pagamento  
+✅ **Storage** - Gerenciamento de uploads e arquivos  
+✅ **Validações** - Tanto client-side quanto server-side  
+✅ **Composer** - Gerenciamento de dependências PHP  
+
+## 🤝 Contribuindo
+
+Contribuições são sempre bem-vindas! Se você tem alguma sugestão para melhorar este projeto:
+
+1. Faça um Fork do projeto
+2. Crie uma Branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a Branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👨‍💻 Autor
+
+**Daniel de Oliveira Zanchetta**  
+*Desenvolvedor Web Full Stack*
+
+🔗 **Conecte-se comigo:**  
+[![GitHub](https://img.shields.io/badge/GitHub-@DanZx819-181717?style=flat&logo=github)](https://github.com/DanZx819)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Daniel_Zanchetta-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/daniel-zanchetta)  
+[![Email](https://img.shields.io/badge/Email-Contato-EA4335?style=flat&logo=gmail)](mailto:daniel.zanchetta@example.com)
+
+---
+
+<div align="center">
+
+### ⭐ Se este projeto foi útil para você, considere dar uma estrela!
+
+**Desenvolvido com 💜 por [Daniel Zanchetta](https://github.com/DanZx819)**
+
+</div>
